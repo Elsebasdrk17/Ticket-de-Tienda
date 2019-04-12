@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +26,7 @@ namespace ticketTienda
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            //Si la caja de texto esta en blanco marcar error
             if (txtSuPago.Text == "")
             {
                 MessageBox.Show("Obligatorio poner la cantidad pagada", "ERROR");
@@ -64,6 +65,7 @@ namespace ticketTienda
             StreamWriter escritor = new StreamWriter(fs);
             escritor.WriteLine("EL OTZO");
             escritor.WriteLine(DateTime.Now.ToString());
+            //se hace un ciclo para recorrer cada item de la lista
             for(int i = 0; i < listaProductos.Items.Count; i++)
             {
                 escritor.WriteLine(listaProductos.Items[i]);
@@ -90,12 +92,14 @@ namespace ticketTienda
         {
             string nombre = txtProducto.Text;
             int cantidad = Convert.ToInt32(txtCantidad.Text);
+            // si la caja de texto esta en blanco marcar error
             if (txtCosto.Text == "")
             {
                 MessageBox.Show("Obligatorio poner precio del producto", "ERROR");
             }
             else
             {
+                //obtener tosdos los valores y mostrarlos en las cajas de textos
                 double costo = Convert.ToDouble(txtCosto.Text);
                 producto = new Producto(nombre, cantidad, costo);
                 txtImporte.Text = producto.importe().ToString();
